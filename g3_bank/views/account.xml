@@ -61,6 +61,7 @@
                                 <field name="typeAccount" 
                                        widget="radio" 
                                        options="{'horizontal': true}" 
+                                    <!--posible cambio: readonly="1"  (quitando el attrs)-->
                                        attrs="{'readonly': [('id', '!=', False)]}"/>
                                 <field name="beginBalanceTimestamp" readonly="1"/>
                             </group>
