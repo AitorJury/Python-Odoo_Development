@@ -7,7 +7,7 @@ Este repositorio contiene un módulo personalizado para **Odoo 16** diseñado pa
 ## 🛠️ Funcionalidades Técnicas
 
 ### 1. Extensión de Modelos Core
-* **Inheritance:** Extensión del modelo base `res.partner` (Customer) mediante Python para integrar validaciones financieras y campos relacionales sin usar el modo desarrollador de la UI.
+* **Inheritance:** Extensión del modelo base `res.user` (Customer) mediante Python para integrar validaciones financieras y campos relacionales sin usar el modo desarrollador de la UI.
 * **Integridad Referencial:** Implementación de controles preventivos en el borrado de cuentas para evitar errores `HTTP 500`, garantizando que solo se eliminen cuentas sin historial de movimientos.
 
 ### 2. Lógica de Negocio Avanzada
@@ -26,3 +26,5 @@ Este repositorio contiene un módulo personalizado para **Odoo 16** diseñado pa
 
 ## 👤 Autor
 **Aitor Jury Rodríguez** - *Fullstack Developer & Intern @ BBVA Technology*
+- [LinkedIn](https://www.linkedin.com/in/aitor-jury-rodr%C3%ADguez-6330742b1/)
+- [Email](mailto:aitor.jr04@gmail.com)
