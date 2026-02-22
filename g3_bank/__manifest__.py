@@ -25,8 +25,9 @@
 
     # always loaded
     'data': [
+		#TODO: Añadir permisos de acceso y grupos para res.users y resto de modelos del módulo
         'security/groups_data.xml',
-        'security/ir.model.access.csv',
+        'security/ir.model.access.csv', 
         'views/bank.xml',
         'views/customer.xml',
         'views/movement.xml',

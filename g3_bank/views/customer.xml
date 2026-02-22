@@ -44,9 +44,9 @@
                     </group>
                     <notebook>
                         <page string="Cuentas" name="detalles_cuentas">
+                            <!--Se añade dominio para solo añadir cuentas sin clientes-->
                             <field name="account_ids"
-                            domain="[('customer_ids', '=', False), ('balance', '>', 0)]"
-                            readonly="True"
+                            domain="[('customer_ids', '=', False)]"
                             />
                         </page>
                     </notebook>

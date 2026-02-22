@@ -59,11 +59,11 @@ class Movement(models.Model):
                 # Si el pago es mayor que lo que tengo mas mi credito salta excepcion
                 if r.amount > total_disponible:
                     raise ValidationError(
-                                          "Insufficient funds.\n"
-                                          "Available: %.2f (Balance: %.2f + Credit: %.2f)\n"
-                                          "Attempted payment: %.2f" % 
-                                          (total_disponible, saldo_previo, limite_credito, r.amount)
-                                          )
+                        "Insufficient funds.\n"
+                        "Available: %.2f (Balance: %.2f + Credit: %.2f)\n"
+                        "Attempted payment: %.2f" % 
+                        (total_disponible, saldo_previo, limite_credito, r.amount)
+                    )
 
     # Para calcular balance
     @api.depends('account_id.creditLine', 'account_id.balance')
@@ -75,15 +75,8 @@ class Movement(models.Model):
                 r.credit_available = r.account_id.creditLine - usado
             else:
                 r.credit_available = 0.0
-
-    def unlink(self):
-        for record in self:
-            last_movement = self.search([
-                                        ('account_id', '=', record.account_id.id)
-                                        ], order='timestamp desc, id desc', limit=1)
-
-            if record.id != last_movement.id:
-                raise ValidationError(
-                                      "Solo puedes borrar el ultimo movimiento de la cuetna"
-                                      )
-        return super(Movement, self).unlink()
+                
+                
+    #FIXME: DELETE: Método creado en account.py llamado "action_unlink_movement" y creacion de boton en account.xml 
+    #MEJORAS: He puesto color a cuando es pago y deposito, he hecho la vista search para seleccionar la cuenta que
+    #quieras para visualizar los movimientos

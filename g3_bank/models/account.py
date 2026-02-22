@@ -32,6 +32,7 @@ class Account(models.Model):
                                    ], string='Account Type', required=True, default='STANDARD')
     
 #   Relación con Customer (Muchos a Muchos)
+    #FIXME (SOLUCIONADO) Asociar por defecto las cuentas que se creen al usuario que crea la cuenta: self.env.user
     customer_ids = fields.Many2many('res.users', string='Customers', default=_default_customer, required=True,
                                     domain=[('active', '=', True), ('share', '=', False)])
 #   Relación con Movement (Uno a Muchos)
@@ -63,7 +64,7 @@ class Account(models.Model):
         for record in self:
             if record.creditLine < 0:
                 raise ValidationError("The credit line limit cannot be negative.")
-            
+
 #   Valida que el begin balance no sea negativo.
     @api.constrains('beginBalance')
     def _check_begin_balance(self):
@@ -85,7 +86,7 @@ class Account(models.Model):
             if record.movement_ids:
                 raise UserError("Cannot delete an account that has movements.")
         return super(Account, self).unlink()
-    
+
 #   Lógica para que salten advertencias cuando intentan cambiar cosas.
 #    @api.onchange('beginBalance', 'typeAccount')
 #    def _onchange_protected_fields(self):
@@ -121,11 +122,8 @@ class Account(models.Model):
 #            'context': {'default_account_id': self.id},
 #        }
 
-#    def action_unlink_movement(self):
-#        if not self.movement_ids:
-#            return True
-#        movements_sorted = self.movement_ids.sorted(key=lambda r: (r.timestamp, r.id), reverse=True)
-#        last_movement = movements_sorted[0]
-#        last_movement.unlink()
-#    
-#        return True
+    def action_unlink_movement(self):
+        movements_sorted = self.movement_ids.sorted(key=lambda r: (r.timestamp, r.id), reverse=True)
+        last_movement = movements_sorted[0]
+        last_movement.unlink()
+        return True

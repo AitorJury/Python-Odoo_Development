@@ -57,11 +57,12 @@
                             <group string="Account Information">
                                 <field name="customer_ids" 
                                        widget="many2many_tags" 
-                                       attrs="{'readonly': [('id', '!=', False)]}"/>
+                                       attrs="{'readonly': [('id', '!=', False)]}" />
+                                <!-- Posible cambio: Si se quiere al customer ya predefinido,
+                                cambio 'attrs=...' por -> readonly="1" -->
                                 <field name="typeAccount" 
                                        widget="radio" 
-                                       options="{'horizontal': true}" 
-                                    <!--posible cambio: readonly="1"  (quitando el attrs)-->
+                                       options="{'horizontal': true}"
                                        attrs="{'readonly': [('id', '!=', False)]}"/>
                                 <field name="beginBalanceTimestamp" readonly="1"/>
                             </group>
@@ -82,16 +83,17 @@
                                             type="action"
                                             class="oe_highlight"
                                             context="{'default_account_id': active_id}"/>
-                
-                                    <!--button name="action_unlink_movement"
+
+                                    <button name="action_unlink_movement"
                                             string="Delete Movement"
                                             type="object"
                                             icon="fa-trash"
                                             class="btn-danger"
                                             confirm="Are you sure to delete the last movement?"
-                                            attrs="{'invisible': [('movement_ids', '=', [])]}"/-->
-                                </header>    
-                                <field name="movement_ids" options="{'no_create': True}"/>
+                                            attrs="{'invisible': [('movement_ids', '=', [])]}"/>
+                                    
+                                </header>
+                                <field name="movement_ids" readonly="1" />
                             </page>
                         </notebook>
                     </sheet>
